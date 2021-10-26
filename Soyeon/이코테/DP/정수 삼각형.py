@@ -1,3 +1,8 @@
+# [silver-1] 1932 정수 삼각형
+# algorithm  DP
+# 메모리:    34480 KB
+# 시간:      308 ms
+
 N = int(input())
 
 triangle = [ [0]*N for _ in range(N) ]
