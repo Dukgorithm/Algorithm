@@ -1,13 +1,11 @@
 N = int(input())
+stock = list(map(int, input().split()))
 
-foodList = list(map(int, input().split()))
+ant=[0]*(N)
+ant[0] = stock[0]
+ant[1] = max(stock[0], stock[1])
 
-d = [0]*100
+for i in range(2, N):
+    ant[i] = max(ant[i-2]+stock[i], ant[i-1])
 
-d[0]=foodList[0]
-d[1]=max(foodList[0], foodList[1])
-
-for i in range(2, len(foodList)):
-    d[i] = max(d[i-2]+foodList[i], d[i-1])
-
-print(d[N-1])
+print(ant[N-1])
