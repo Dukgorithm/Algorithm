@@ -1,21 +1,21 @@
-import sys
-input = sys.stdin.readline
+# [silver-3] 14501 퇴사
+# algorithm  DP
+# 메모리:    29200 KB
+# 시간:      76 ms
 
 N = int(input())
+value = [0 for _ in range(21)]
+T, P = [0], [0]
 
-tList = []
-pList = []
-for i in range(N):
+for _ in range(N):
     t, p = map(int, input().split())
-    tList.append(t)
-    pList.append(p)
+    T.append(t)
+    P.append(p)
 
-dp = [0] * 100
+for i in range(1, N+1):
+    value[i+T[i]] = max(value[i+T[i]], value[i]+P[i])
 
-for i in range(N):
-    if dp[i] > dp[i + 1]:
-        dp[i + 1] = dp[i]
-    if dp[i + tList[i]] < dp[i] + pList[i]:
-        dp[i + tList[i]] = dp[i] + pList[i]
+for i in range(2, len(value)):
+    value[i] = max(value[:i+1])
 
-print(dp[N])
+print(value[N+1])
